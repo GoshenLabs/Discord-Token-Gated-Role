@@ -17,10 +17,18 @@ const Home: NextPage = () => {
   const { isLoggedIn } = useUser();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [signFirstClicked, setSignFirstClicked] = useState(false); // State to track "Sign First!" button click
   const login = useLogin();
 
+  const handleSignFirstClick = async () => {
+    await login.login();
+    setSignFirstClicked(true); // Update state to indicate "Sign First!" button clicked
+  };
+
   const requestGrantRole = async () => {
-    // Then make a request to our API endpoint.
+    if (!signFirstClicked) {
+      return; // If "Sign First!" button hasn't been clicked, do nothing
+    }
     try {
       setLoading(true);
       const response = await fetch("/api/grant-role", {
@@ -41,7 +49,7 @@ const Home: NextPage = () => {
       <div className={styles.container} style={{ marginTop: 0 }}>
         <br/>
         <br/>
-      <ImageDisplay src="./onchainbasedhunks.gif" alt="Your Image" />
+        <ImageDisplay src="./onchainbasedhunks.gif" alt="Your Image" />
         <SignIn />
 
         {address && isLoggedIn && session && (
@@ -50,15 +58,16 @@ const Home: NextPage = () => {
             <br/>
             <br/>
             <Button
-          onClick={async () => {
-            await login.login();
-          }}
-        >
-          Sign First!
-        </Button>
-          <br/>
-          <br/>
-            <Button onClick={requestGrantRole}>
+              onClick={handleSignFirstClick} // Call function to handle "Sign First!" button click
+            >
+              Sign First!
+            </Button>
+            <br/>
+            <br/>
+            <Button
+              onClick={requestGrantRole}
+              disabled={!signFirstClicked || loading} // Disable button if "Sign First!" not clicked or loading
+            >
               {loading ? "Loading..." : "Verify Hunks"}
             </Button>
           </div>

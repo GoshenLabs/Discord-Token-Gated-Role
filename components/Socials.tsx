@@ -2,7 +2,7 @@
 import {
     Flex,
     Icon } from '@chakra-ui/react'
-  import { FaTwitter, FaDiscord } from "react-icons/fa";
+  import { FaTwitter, FaDiscord, FaGithub } from "react-icons/fa";
 
 
 const Socials = () => {
@@ -23,7 +23,19 @@ const Socials = () => {
                 cursor="pointer"
                 onClick={() =>
                   window.open(
-                    "#",
+                    "https://discord.com/invite/GS7WhWGSr7",
+                    "_blank"
+                  )
+                }
+                mr={4}
+              />
+              <Icon
+                as={FaGithub}
+                boxSize={8}
+                cursor="pointer"
+                onClick={() =>
+                  window.open(
+                    "https://github.com/GoshenLabs/Discord-Token-Gated-Role",
                     "_blank"
                   )
                 }
