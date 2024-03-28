@@ -25,10 +25,10 @@ export default async function grantRole(
   }
 
   // Initialise the SDK
-  const sdk = new ThirdwebSDK("mumbai");
+  const sdk = new ThirdwebSDK("base");
 
   // Check if this user owns an NFT
-  const editionDrop = await sdk.getContract(editionDropAddress, "edition-drop");
+  const editionDrop: any = await sdk.getContract(editionDropAddress);
 
   // Get addresses' balance of token ID 0
   const balance = await editionDrop.balanceOf(user?.address!, 0);
