@@ -13,6 +13,7 @@ import { ChakraProvider, ColorModeScript, CSSReset } from '@chakra-ui/react'
 import theme from "../utils/theme";
 import "../styles/globals.css";
 import Head from "next/head";
+import Socials from "../components/Socials"
 
 // This is the chain your dApp will work on.
 const activeChain = "base";
@@ -84,6 +85,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <SessionProvider session={pageProps.session}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Component {...pageProps} />
+        <Socials />
       </SessionProvider>
     </ThirdwebProvider>
     </ChakraProvider>
