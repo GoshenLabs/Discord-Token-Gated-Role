@@ -1,4 +1,4 @@
-import { useAddress, useUser } from "@thirdweb-dev/react";
+import { useAddress, useUser, useLogin } from "@thirdweb-dev/react";
 import type { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
@@ -13,6 +13,7 @@ const Home: NextPage = () => {
   const { isLoggedIn } = useUser();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const login = useLogin();
 
   const requestGrantRole = async () => {
     // Then make a request to our API endpoint.
@@ -44,6 +45,15 @@ const Home: NextPage = () => {
             <br/>
             <br/>
             <br/>
+            <Button
+          onClick={async () => {
+            await login.login();
+          }}
+        >
+          Sign First!
+        </Button>
+          <br/>
+          <br/>
             <Button onClick={requestGrantRole}>
               {loading ? "Loading..." : "Verify Hunks"}
             </Button>

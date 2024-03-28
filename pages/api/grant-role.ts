@@ -113,7 +113,7 @@ export default async function grantRole(
     // If the user is verified but doesn't have the required NFTs, return an error
     return res
       .status(401)
-      .json({ error: "User does not have the required NFTs in their wallet." });
+      .json({ error: "User does not have the required HUNKS in their wallet." });
   }
 }
 
