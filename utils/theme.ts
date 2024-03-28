@@ -1,4 +1,4 @@
-// theme.js
+// utils/theme.js
 
 import { extendTheme } from "@chakra-ui/react";
 

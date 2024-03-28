@@ -10,7 +10,7 @@ import { ThirdwebProvider,
   phantomWallet, } from "@thirdweb-dev/react";
 import { SessionProvider } from "next-auth/react";
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
-import theme from "./theme";
+import theme from "../utils/theme";
 import "../styles/globals.css";
 import Head from "next/head";
 
