@@ -3,17 +3,21 @@ import {
   useAddress,
   useLogin,
   useUser,
+  useLogout,
+  useDisconnect
 } from "@thirdweb-dev/react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import React from "react";
 import styles from "../styles/Home.module.css";
-import { Button } from '@chakra-ui/react'
+import { Box, Button } from '@chakra-ui/react'
 
 export default function SignIn() {
   const address = useAddress();
   const { data: session } = useSession();
   const { isLoggedIn } = useUser();
   const login = useLogin();
+  const { logout, isLoading } = useLogout();
+  const disconnect = useDisconnect();
 
   // 1. The user is signed into discord and connected to wallet.
   if (session && address) {
@@ -66,7 +70,17 @@ export default function SignIn() {
   // 4. Connect with Discord (OAuth)
   if (!session) {
     return (
+
+      
       <div className={`${styles.main}`}>
+        <Box borderColor={"green"}>
+        {address}
+        </Box>
+        <br/>
+        <br/>
+         <Button onClick={() => disconnect()}>
+      {isLoading ? "Logging out..." : "Switch Wallet"}
+    </Button>
         <h2 className={styles.noGapBottom}>Link your Discord Account</h2>
         <p>Please log in your Discord to connect it with your wallet!</p>
         <br/>

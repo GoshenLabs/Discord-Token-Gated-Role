@@ -45,11 +45,12 @@ const Home: NextPage = () => {
             <br/>
             <br/>
             <Button onClick={requestGrantRole}>
-              {loading ? "Loading..." : "Give me the role"}
+              {loading ? "Loading..." : "Verify Hunks"}
             </Button>
           </div>
         )}
-
+        <br/>
+        <br/>
         {message && <p>{message}</p>}
       </div>
     </div>
