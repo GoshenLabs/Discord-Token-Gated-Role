@@ -12,18 +12,22 @@ const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  async function requestGrantRole() {
+  const requestGrantRole = async () => {
+    // Then make a request to our API endpoint.
     try {
+      setLoading(true);
       const response = await fetch("/api/grant-role", {
         method: "POST",
       });
       const data = await response.json();
       console.log(data);
-      alert("Check the console for the response!");
+      setMessage(data.message || data.error);
     } catch (e) {
       console.error(e);
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div>
