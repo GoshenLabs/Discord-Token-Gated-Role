@@ -52,7 +52,7 @@ export default async function grantRole(
           // Use the bot token to grant the role
           Authorization: `Bot ${process.env.BOT_TOKEN}`,
         },
-        method: "PUT",
+        method: "POST",
       }
     );
 
