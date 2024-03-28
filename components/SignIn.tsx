@@ -7,6 +7,7 @@ import {
 import { useSession, signIn, signOut } from "next-auth/react";
 import React from "react";
 import styles from "../styles/Home.module.css";
+import { Button } from '@chakra-ui/react'
 
 export default function SignIn() {
   const address = useAddress();
@@ -29,8 +30,11 @@ export default function SignIn() {
   if (!address) {
     return (
       <div className={styles.main}>
-        <h2 className={styles.noGapBottom}>Connect Your Wallet</h2>
-        <p>Connect your wallet to check eligibility.</p>
+        <h2 className={styles.noGapBottom}>Connect your Wallet</h2>
+        <p>When you connect your wallet, the bot gains access to verify your holdings of OnChain Based Hunks. <br /><br />This process is secure; you're simply authenticating on the DAPP to confirm ownership of the wallet.</p>
+        <br/>
+        <br/>
+        <br/>
         <ConnectWallet theme="dark" />
       </div>
     );
@@ -45,15 +49,16 @@ export default function SignIn() {
           This proves that you really own the wallet that you&apos;ve claimed to
           be connected.
         </p>
-
-        <button
+        <br/>
+        <br/>
+        <br/>
+        <Button
           onClick={async () => {
             await login.login();
           }}
-          className={`${styles.mainButton} ${styles.spacerTop}`}
         >
           Sign message!
-        </button>
+        </Button>
       </div>
     );
   }
@@ -62,15 +67,16 @@ export default function SignIn() {
   if (!session) {
     return (
       <div className={`${styles.main}`}>
-        <h2 className={styles.noGapBottom}>Sign In with Discord</h2>
-        <p>Sign In with Discord to check your eligibility for the NFT!</p>
-
-        <button
+        <h2 className={styles.noGapBottom}>Link your Discord Account</h2>
+        <p>Please log in your Discord to connect it with your wallet!</p>
+        <br/>
+        <br/>
+        <br/>
+        <Button 
           onClick={() => signIn("discord")}
-          className={`${styles.mainButton} ${styles.spacerTop}`}
         >
-          Connect Discord
-        </button>
+          Link Discord
+        </Button>
       </div>
     );
   }

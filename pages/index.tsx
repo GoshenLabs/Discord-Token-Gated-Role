@@ -2,6 +2,7 @@ import { useAddress, useUser } from "@thirdweb-dev/react";
 import type { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import ImageDisplay from '../components/ImageDisplay';
 import SignIn from "../components/SignIn";
 import styles from "../styles/Home.module.css";
 
@@ -32,6 +33,9 @@ const Home: NextPage = () => {
   return (
     <div>
       <div className={styles.container} style={{ marginTop: 0 }}>
+        <br/>
+        <br/>
+      <ImageDisplay src="./onchainbasedhunks.gif" alt="Your Image" />
         <SignIn />
 
         {address && isLoggedIn && session && (

@@ -1,7 +1,7 @@
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next";
-import { discordServerId, editionDropAddress, roleId } from "../../constants";
+import { discordServerId, contractAddress, roleId } from "../../constants";
 import { authOptions } from "./auth/[...nextauth]";
 import { getUser } from "./thirdweb-auth/[...thirdweb]";
 
@@ -27,11 +27,12 @@ export default async function grantRole(
   // Initialise the SDK
   const sdk = new ThirdwebSDK("base");
 
+
   // Check if this user owns an NFT
-  const editionDrop: any = await sdk.getContract(editionDropAddress);
+  const contract = await sdk.getContract(contractAddress);
 
   // Get addresses' balance of token ID 0
-  const balance = await editionDrop.balanceOf(user?.address!, 0);
+  const balance = await contract.erc721.balanceOf(user?.address!);
 
   if (balance.toNumber() > 0) {
     // If the user is verified and has an NFT, return the content
@@ -52,7 +53,7 @@ export default async function grantRole(
           // Use the bot token to grant the role
           Authorization: `Bot ${process.env.BOT_TOKEN}`,
         },
-        method: "POST",
+        method: "PUT",
       }
     );
 
@@ -72,6 +73,6 @@ export default async function grantRole(
   }
   // If the user is verified but doesn't have an NFT, return an error
   else {
-    res.status(401).json({ error: "User does not have an NFT" });
+    res.status(401).json({ error: "User does not have any OnChain Based Hunks in their wallet." });
   }
 }
