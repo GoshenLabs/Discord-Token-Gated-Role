@@ -5,6 +5,7 @@ import { useState } from "react";
 import ImageDisplay from '../components/ImageDisplay';
 import SignIn from "../components/SignIn";
 import styles from "../styles/Home.module.css";
+import { Button } from '@chakra-ui/react'
 
 const Home: NextPage = () => {
   const address = useAddress();
@@ -40,9 +41,12 @@ const Home: NextPage = () => {
 
         {address && isLoggedIn && session && (
           <div className={styles.collectionContainer}>
-            <button className={styles.mainButton} onClick={requestGrantRole}>
+            <br/>
+            <br/>
+            <br/>
+            <Button onClick={requestGrantRole}>
               {loading ? "Loading..." : "Give me the role"}
-            </button>
+            </Button>
           </div>
         )}
 
