@@ -31,7 +31,7 @@ export default function SignIn() {
     return (
       <div className={styles.main}>
         <h2 className={styles.noGapBottom}>Connect your Wallet</h2>
-        <p>When you connect your wallet, the bot gains access to verify your holdings of OnChain Based Hunks. <br /><br />This process is secure; you're simply authenticating on the DAPP to confirm ownership of the wallet.</p>
+        <p>When you connect your wallet, the bot gains access to verify your holdings of OnChain Based Hunks. <br /><br />This process is secure; you&apos;re simply authenticating on the DAPP to confirm ownership of the wallet.</p>
         <br/>
         <br/>
         <br/>
