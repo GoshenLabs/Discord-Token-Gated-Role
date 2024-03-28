@@ -9,7 +9,7 @@ import { ThirdwebProvider,
   rainbowWallet,
   phantomWallet, } from "@thirdweb-dev/react";
 import { SessionProvider } from "next-auth/react";
-import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
+import { ChakraProvider, ColorModeScript, CSSReset } from '@chakra-ui/react'
 import theme from "../utils/theme";
 import "../styles/globals.css";
 import Head from "next/head";
@@ -20,6 +20,7 @@ const activeChain = "base";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
+      <CSSReset />
       <Head>
           <title>
           OnChain Based Hunks - NFT Verifier
